@@ -1,0 +1,94 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    color: #fff; /* Color de texto en el fondo */
+    font-family: Arial, sans-serif;
+}
+
+.fondo{
+    width: 100%;
+    height: 100%;
+    background-image: url('src/fondo1.jpeg'); 
+    background-size: cover;
+}
+
+/* Estilo del encabezado */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    border-bottom: 1px solid #fff;
+}
+
+.contenido{
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    height: 100%;
+}
+
+/* Estilo del contenedor principal */
+.container {
+    text-align: center;
+    margin-top: 20%;
+}
+
+/* Estilo del botón "Reserva ahora" */
+.btn-reserva {
+    background: transparent;
+    border: 2px solid #9522E4;
+    color: #9522E4;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.btn-reserva:hover{
+
+    background-color: #9522E4;
+    color: white;
+}
+
+/* Estilo del texto arriba del botón */
+.text-arriba {
+    color: #fff;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    font-size: 26px;
+}
+
+a{
+    color: #fff;
+    padding-right: 7px;
+    font-size: 18px;
+}
+
+a:hover{
+    color: antiquewhite;
+    text-decoration: #a1a0a0;
+}
+
+.menu-link {
+    text-decoration: none;
+    color: #000; /* Color de texto predeterminado */
+    margin: 0 10px;
+    position: relative; /* Añadimos posición relativa para permitir el borde inferior */
+}
+
+/* Estilo para la línea blanca debajo de los enlaces */
+.menu-link::after {
+    content: "";
+    display: block;
+    width: 100%; /* Ancho del 100% del elemento padre */
+    height: 1px; /* Altura de la línea */
+    background-color: #fff; /* Color de la línea blanca */
+    position: absolute;
+    bottom: -5px; /* Ajusta la posición de la línea debajo del texto */
+    left: 0;
+}

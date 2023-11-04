@@ -1,0 +1,176 @@
+.navbar-custom {
+    background-color: #fff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-custom .navbar-brand {
+    font-weight: bold;
+    color: #9522E4;
+    font-size: 25px;
+}
+
+.search-box {
+    display: flex;
+}
+
+.search-box input {
+    border: none;
+    border-bottom: 2px solid #ccc;
+}
+
+.search-box input:focus {
+    outline: none;
+    border: none;
+}
+
+.search-box .search-icon {
+    margin-left: 10px;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    margin-top: 8px;
+    
+}
+
+.filter-button,
+.sort-button {
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 11px;
+    padding: 5px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 30px;
+    background-color: #9522E4; /* Cambia a color morado al pasar el cursor */
+    color: #fff;
+}
+
+.filter-button:hover,
+.sort-button:hover {
+    background-color: #6610A0;
+    color: #fff;
+}
+
+.filter-button:focus,
+.sort-button:focus {
+    outline: none;
+}
+
+
+/* Estilo para la ventana emergente de filtros (oculta inicialmente) */
+.filter-popup {
+    display: none;
+    position: absolute;
+    top: 140px;
+    left: 85px;
+    background-color: #fff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    z-index: 1;
+    width: 30%;
+    height: 40%;
+}
+
+.buttons-filter{
+    border-radius: 4px;
+    border: 2px solid #9522E4;
+    color: #9522E4;
+    background-color: #fff;
+    margin-left: 15px;
+    margin-top: 4px;
+    width: 26%;
+    height: 15%;
+    
+}
+
+.buttons-filter:hover{
+    background-color: #9522E4;
+    color: #fff;
+}
+
+.buttons-filter:focus{
+    background-color: #6610A0;
+    border: 2px solid #6610A0;
+    outline: none;
+    color: #fff;
+    
+}
+
+/* Estilo personalizado para los contenedores de terrazas */
+.terrace-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.terrace-item {
+    width: calc(25% - 10px); /* 4 terrazas por línea con margen entre ellas */
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.terrace-item h2{
+    font-size: 20px;
+    margin-top: 7px;
+}
+
+.terrace-item p{
+    margin-top: 10px;
+}
+
+.terrace-item img {
+    width: 250px;
+    height: 170px;
+    max-width: 100%;
+}
+
+@media (max-width: 768px) {
+    .terrace-item {
+        width: calc(50% - 10px); /* 2 terrazas por línea en dispositivos móviles */
+    }
+}
+
+.sort-popup {
+    display: none;
+    position: absolute;
+    top: 140px;
+    left: 190px;
+    background-color: #fff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding: 10px;
+    z-index: 1;
+    border: 1px solid #bdbcbc;
+}
+
+.sort-option {
+    border: none; 
+    background: none; 
+    padding: 5px; 
+    display: block; 
+    margin: 2px 0; 
+}
+
+.sort-option:hover{
+    background-color: #d2a7f0;
+}
+
+.sort-option:focus{
+    outline: none;
+    background-color: #d2a7f0;
+}
+
+.sort-option:first-child {
+    border-bottom: 1px solid purple;
+}
+
+.close-button{
+    cursor: pointer;
+}
+

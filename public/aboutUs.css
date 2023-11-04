@@ -1,0 +1,53 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    color: #fff; /* Color de texto en el fondo */
+    font-family: Arial, sans-serif;
+}
+
+
+.imagen{
+    width: 100%;
+    height: 50vh;
+    background-image: url('src/about.jpg');
+    background-size: cover;
+    
+}
+
+#contenido {
+    text-align: center;
+    padding: 20px; /* Espacio en la parte superior para el contenido */
+}
+
+h1 {
+    color: black; /* Color del texto del título */
+    font-size: 36px; /* Tamaño del texto del título */
+    padding-top: 20px;
+}
+
+p {
+    color: black; /* Color del texto de la descripción */
+    font-size: 18px; /* Tamaño del texto de la descripción */
+    padding-top: 10px;
+    text-align: justify;
+}
+
+.redes-sociales {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.redes-sociales a {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.redes-sociales img {
+    width: 40px; /* Ajusta el tamaño de los íconos según tus preferencias */
+    height: 40px;
+}
