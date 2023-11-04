@@ -102,8 +102,9 @@
 .terrace-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
     margin-top: 25px;
+    
 }
 
 .terrace-item {
@@ -113,6 +114,8 @@
     border-radius: 10px;
     padding: 10px;
     cursor: pointer;
+    margin-left: 9px;
+    box-sizing: border-box;
 }
 
 .terrace-item h2{

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="src/logo.png" type="image/png">
+    <link rel="stylesheet" type="text/css" href="inicio.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>TerraceTrove</title>
+</head>
+<body>
+    <!-- Barra superior -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container">
+            <h1 class="navbar-brand">TerraceTrove</h1>
+            <div class="search-box ml-auto">
+                <input type="text" class="form-control" placeholder="¿Cuántas personas?">
+                <img class="search-icon" src="src/lupa.png" alt="Buscar">
+            </div>
+        </div>
+    </nav>
+    <!-- Contenido de la página -->
+    <div class="container">
+        <button class="filter-button" id="filterButton">Filtrar</button>
+        <button class="sort-button" id="sortButton">Ordenar</button>
+        <div class="filter-popup" id="filterPopup">
+            <div class="close-button" onclick="closeFilterPopup()">
+                <img src="src/cerrar.png" alt="Cerrar" style="width: 12px; height:12px;">
+            </div>
+            <!-- Contenido de la ventana emergente de filtros -->
+            <h2 style="font-size:20px; margin-top: 10px; margin-left: 15px; color: #9522E4;"><b>Lugar</b></h2>
+            <button class="buttons-filter" onclick="filterTerraces('hacienda')">Hacienda</button>
+            <button class="buttons-filter" onclick="filterTerraces('salon')">Salón</button>
+            <button class="buttons-filter" onclick="filterTerraces('terraza')">Terraza</button>
+            <h2 style="font-size:20px; margin-top: 10px; margin-left: 15px; color: #9522E4;"><b>Servicio</b></h2>
+            <button class="buttons-filter" onclick="filterTerraces('', 'hospedaje')">Hospedaje</button>
+            <button class="buttons-filter" onclick="filterTerraces('', 'alberca')">Alberca</button>
+        </div>
+        <div class="sort-popup" id="sortPopup">
+            <div class="close-button" onclick="closeSortPopup()">
+                <img src="src/cerrar.png" alt="Cerrar" style="width: 12px; height:12px;">
+            </div>
+            <!-- Contenido de la ventana emergente de orden -->
+            <button class="sort-option" onclick="sortTerraces('asc')">De menor a mayor capacidad</button>
+            <button class="sort-option" onclick="sortTerraces('desc')">De mayor a menor capacidad</button>
+        </div>
+        <div class="terrace-container">
+            <% terrazas.forEach(function(terraza) { %>
+                <div class="terrace-item" onclick="window.location.href = '<%= terraza.pagina %>';">
+                    <img src="<%= terraza.imagen %>" alt="<%= terraza.nombre %>">
+                    <h2><%= terraza.nombre %></h2>
+                    <p>Capacidad: <%= terraza.capacidad %><br> <%= terraza.ubicacion %></p>
+                </div>
+            <%}); %>
+        </div>
+    </div>
+    
+    <!-- Scripts de Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // JavaScript para mostrar/ocultar la ventana emergente de filtros y ordenar
+        $(document).ready(function(){
+            $("#filterButton").click(function(){
+                $("#filterPopup").toggle();
+            });
+        });
+        $(document).ready(function(){
+            $("#sortButton").click(function(){
+                $("#sortPopup").toggle();
+            });
+        });
+
+        // Función para cerrar la ventana emergente de "Ordenar"
+        function closeSortPopup() {
+            document.getElementById("sortPopup").style.display = "none";
+        }
+
+        // Función para cerrar la ventana emergente de "Filtrar"
+        function closeFilterPopup() {
+            document.getElementById("filterPopup").style.display = "none";
+        }
+
+        let terrazas = <%- JSON.stringify(terrazas) %>;
+
+        function sortTerraces(order) {
+            if (order === 'asc') {
+                // Ordena de menor a mayor capacidad
+                terrazas.sort((a, b) => a.capacidad - b.capacidad);
+            } else if (order === 'desc') {
+                // Ordena de mayor a menor capacidad
+                terrazas.sort((a, b) => b.capacidad - a.capacidad);
+            }
+
+            let container = document.querySelector('.terrace-container');
+            container.innerHTML = ''; // Elimina los elementos actuales de la terraza
+            terrazas.forEach(function(terraza) { // Agrega nuevos elementos en el orden correcto
+                container.innerHTML += `
+                    <div class="terrace-item" onclick="window.location.href = '${terraza.pagina}';">
+                        <img src="${terraza.imagen}" alt="${terraza.nombre}">
+                        <h2>${terraza.nombre}</h2>
+                        <p>Capacidad: ${terraza.capacidad}<br>${terraza.ubicacion}</p>
+                    </div>
+                `;
+            });
+        }
+
+        function filterTerraces(tipo, servicio) {
+            // Filtra las terrazas por tipo y servicio
+            let terrazasFiltradas = terrazas.filter(terraza => {
+                // Si el tipo y el servicio son válidos, se verifica que coincidan con la terraza
+                if (tipo && servicio) {
+                return terraza.tipo === tipo && terraza.servicio === servicio;
+                }
+                // Si solo el tipo es válido, se verifica que coincida con la terraza
+                else if (tipo) {
+                return terraza.tipo === tipo;
+                }
+                // Si solo el servicio es válido, se verifica que coincida con la terraza
+                else if (servicio) {
+                return terraza.servicio === servicio;
+                }
+                // Si ninguno es válido, se devuelve todas las terrazas
+                else {
+                return true;
+                }
+            });
+
+            // Aquí puedes actualizar tu DOM con las terrazas filtradas
+            let container = document.querySelector(".terrace-container");
+            container.innerHTML = ""; // Elimina los elementos actuales de la terraza
+            terrazasFiltradas.forEach(function (terraza) {
+                // Agrega nuevos elementos en el orden correcto
+                container.innerHTML += `
+                <div class="terrace-item" onclick="window.location.href = '${terraza.pagina}';">
+                    <img src="${terraza.imagen}" alt="${terraza.nombre}">
+                    <h2>${terraza.nombre}</h2>
+                    <p>Capacidad: ${terraza.capacidad}<br>${terraza.ubicacion}</p>
+                </div>
+                `;
+            });
+        }
+
+        // Obtener los elementos del DOM
+        let input = document.querySelector(".form-control");
+        let lupa = document.querySelector(".search-icon");
+        let container = document.querySelector(".terrace-container");
+
+        // Agregar un evento click a la lupa
+        lupa.addEventListener("click", function () {
+        // Obtener el valor del input
+        let personas = input.value;
+        // Filtrar los terrazas por capacidad
+        filterPlaces(personas);
+        });
+
+        // Definir la función que filtra los terrazaes
+        function filterPlaces(personas) {
+        // Filtrar el arreglo de terrazaes por capacidad
+        let terrazasFiltrados = terrazas.filter((terraza) => terraza.capacidad >= personas);
+
+        // Actualizar el DOM con los lugares filtrados
+        container.innerHTML = ""; // Elimina los elementos actuales de los lugares
+        terrazasFiltrados.forEach(function (terraza) {
+            // Agrega nuevos elementos en el orden correcto
+            container.innerHTML += `
+            <div class="terrace-item" onclick="window.location.href = '${terraza.pagina}';">
+                <img src="${terraza.imagen}" alt="${terraza.nombre}">
+                <h2>${terraza.nombre}</h2>
+                <p>Capacidad: ${terraza.capacidad}<br>${terraza.ubicacion}</p>
+            </div>
+            `;
+        });
+        }
+
+        
+    </script>
+</body>
+</html>
