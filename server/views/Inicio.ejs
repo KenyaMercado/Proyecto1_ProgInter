@@ -46,7 +46,7 @@
         </div>
         <div class="terrace-container">
             <% terrazas.forEach(function(terraza) { %>
-                <div class="terrace-item" onclick="window.location.href = '<%= terraza.pagina %>';">
+                <div class="terrace-item" data-pagina="<%= terraza.pagina %>" onclick="redirectToEvent(this);">
                     <img src="<%= terraza.imagen %>" alt="<%= terraza.nombre %>">
                     <h2><%= terraza.nombre %></h2>
                     <p>Capacidad: <%= terraza.capacidad %><br> <%= terraza.ubicacion %></p>
@@ -97,7 +97,7 @@
             container.innerHTML = ''; // Elimina los elementos actuales de la terraza
             terrazas.forEach(function(terraza) { // Agrega nuevos elementos en el orden correcto
                 container.innerHTML += `
-                    <div class="terrace-item" onclick="window.location.href = '${terraza.pagina}';">
+                    <div class="terrace-item" data-pagina="${terraza.pagina}" onclick="redirectToEvent(this);">
                         <img src="${terraza.imagen}" alt="${terraza.nombre}">
                         <h2>${terraza.nombre}</h2>
                         <p>Capacidad: ${terraza.capacidad}<br>${terraza.ubicacion}</p>
@@ -133,7 +133,7 @@
             terrazasFiltradas.forEach(function (terraza) {
                 // Agrega nuevos elementos en el orden correcto
                 container.innerHTML += `
-                <div class="terrace-item" onclick="window.location.href = '${terraza.pagina}';">
+                <div class="terrace-item" data-pagina="${terraza.pagina}" onclick="redirectToEvent(this);">
                     <img src="${terraza.imagen}" alt="${terraza.nombre}">
                     <h2>${terraza.nombre}</h2>
                     <p>Capacidad: ${terraza.capacidad}<br>${terraza.ubicacion}</p>
@@ -165,13 +165,20 @@
         terrazasFiltrados.forEach(function (terraza) {
             // Agrega nuevos elementos en el orden correcto
             container.innerHTML += `
-            <div class="terrace-item" onclick="window.location.href = '${terraza.pagina}';">
+            <div class="terrace-item" data-pagina="${terraza.pagina}" onclick="redirectToEvent(this);">
                 <img src="${terraza.imagen}" alt="${terraza.nombre}">
                 <h2>${terraza.nombre}</h2>
                 <p>Capacidad: ${terraza.capacidad}<br>${terraza.ubicacion}</p>
             </div>
             `;
         });
+        }
+
+        function redirectToEvent(element) {
+        // Obtén el valor de 'pagina' del elemento
+        const pagina = element.getAttribute('data-pagina');
+        // Redirige a /eventos/:pagina
+        window.location.href = '/eventos/' + pagina;
         }
 
         

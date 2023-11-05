@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../src/logo.png" type="image/png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>TerraceTrove</title>
+
+    <!--Estilo de la pagina-->
+    <style>
+        .custom-carousel-container {
+            width: 40%;
+            margin-left: 5%;
+            float: left;
+            margin-top: 4%;
+        }
+        .navbar-custom {
+            background-color: #fff;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar-custom .navbar-brand {
+            font-weight: bold;
+            color: #9522E4;
+            font-size: 28px;
+        }
+
+        .terrace-details-container {
+            width: 40%; /* Ancho del contenedor de detalles */
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin-left: 4%;
+            float: left;
+            border-radius: 5px;
+            height: 320px;
+            margin-top: 4%;
+
+        }
+
+        h2{
+            text-align: center;
+            color: #4d4c4c;
+        }
+
+        p{
+            color: #4d4c4c;
+        }
+
+        hr{
+            border: 1px solid #6610A0;
+            margin-top: 460px;
+            width: 94%;
+        }
+
+        .purple-text {
+            color: #6610A0; /* Color morado */
+        }
+
+        #message-container{
+            display: none;
+            position: absolute;
+            top: 1130px;
+            left: 250px;
+            background-color: #fff;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+            border: 1px solid #9522E4;
+            border-radius: 5px;
+            padding: 10px;
+            z-index: 1;
+            width: 20%;
+            height: 15%;
+            text-align: center;
+
+        }
+        .close-button{
+            cursor: pointer;
+            text-align: right;
+        }
+
+    </style>
+
+</head>
+<body>
+    <!-- Barra superior -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container">
+            <h1 class="navbar-brand">TerraceTrove</h1>
+        </div>
+    </nav>
+
+    <!--Carrusel-->
+    <div class="custom-carousel-container">
+        <div id="imageCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicadores del carrusel -->
+            <ul class="carousel-indicators">
+                <li data-target="#imageCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#imageCarousel" data-slide-to="1"></li>
+                <li data-target="#imageCarousel" data-slide-to="2"></li>
+            </ul>
+
+            <!-- Imágenes del carrusel -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="../<%= terraza.imagen %>" class="d-block w-100" alt="Imagen 1" style="height: 320px;">
+                </div>
+                <div class="carousel-item">
+                    <img src="../<%= terraza.imagen2 %>" class="d-block w-100" alt="Imagen 2" style="height: 320px;">
+                </div>
+                <div class="carousel-item">
+                    <img src="../<%= terraza.imagen3 %>" class="d-block w-100" alt="Imagen 3" style="height: 320px;">
+                </div>
+            </div>
+
+            <!-- Controles del carrusel -->
+            <a class="carousel-control-prev" href="#imageCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Anterior</span>
+            </a>
+            <a class="carousel-control-next" href="#imageCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Siguiente</span>
+            </a>
+        </div>
+    </div>
+    <!-- Contenedor de detalles -->
+    <div class="terrace-details-container">
+        <h2><%= terraza.nombre %></h2>
+        <p><br>Capacidad: <%= terraza.capacidad %><br><%= terraza.ubicacion %></p>
+        <p style="text-align: justify;"><%= terraza.contenido %></p>
+        <p>Teléfono: <%= terraza.telefono %></p>
+    </div>
+
+    <hr>
+    <div class="container mt-5">
+        <h2 class="purple-text">Formulario de Contacto</h2>
+        <form action="/enviar-correo" method="POST">
+            <div class="form-group">
+                <label for="nombre" class="purple-text">Nombre:</label>
+                <input type="text" class="form-control" id="nombre" name="nombre">
+            </div>
+            <div class="form-group">
+                <label for="whatsapp" class="purple-text">WhatsApp:</label>
+                <input type="text" class="form-control" id="whatsapp" name="whatsapp">
+            </div>
+            <div class="form-group">
+                <label for="correo" class="purple-text">Correo Electrónico:</label>
+                <input type="email" class="form-control" id="correo" name="correo">
+            </div>
+            <div class="form-group">
+                <label for="evento" class="purple-text">Tipo de Evento:</label>
+                <select class="form-control" id="evento" name="evento">
+                    <option value="boda">Boda</option>
+                    <option value="empresarial">Evento Empresarial</option>
+                    <option value="fotografia">Sesión de Fotografía</option>
+                    <option value="cumpleanos">Cumpleaños</option>
+                    <option value="otro">Otro</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="asistentes" class="purple-text">Número de Asistentes:</label>
+                <input type="text" class="form-control" id="asistentes" name="asistentes">
+            </div>
+            <div class="form-group">
+                <label for="dia-evento" class="purple-text">Día del Evento:</label>
+                <input type="date" class="form-control" id="dia-evento" name="dia-evento">
+            </div>
+            <div id="message-container" style="display: none;">
+                <div class="close-button" onclick="closeMessageContainer()">
+                    <img src="../src/cerrar.png" alt="Cerrar" style="width: 12px; height:12px;">
+                </div>
+                <p id="message-text"></p>
+            </div>
+            <div class="form-group">
+                <label for="comentarios" class="purple-text">Comentarios:</label>
+                <textarea class="form-control" id="comentarios" name="comentarios" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="contactar" class="purple-text">Contactar por:</label>
+                <select class="form-control" id="contactar" name="contactar">
+                    <option value="whatsapp">WhatsApp</option>
+                    <option value="correo">Correo</option>
+                    <option value="telefono">Teléfono</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary" style="background-color: #6610A0; border-color: #6610A0; margin-bottom: 20px;">Enviar Correo</button>
+        </form>
+
+    </div>
+    
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        const messageContainer = document.getElementById("message-container");
+        const messageText = document.getElementById("message-text");
+      
+        document.querySelector("form").addEventListener("submit", async (e) => {
+          e.preventDefault();
+      
+          const formData = new FormData(e.target);
+          const response = await fetch("/enviar-correo", {
+            method: "POST",
+            body: formData,
+          });
+      
+          if (response.ok) {
+            const data = await response.json();
+            if (data.message) {
+              messageText.textContent = data.message;
+            } else {
+              messageText.textContent = "Error desconocido";
+            }
+          } else {
+            messageText.textContent = "Error en la solicitud";
+          }
+      
+          messageContainer.style.display = "block";
+        });
+
+        function closeMessageContainer() {
+            document.getElementById("message-container").style.display = "none";
+        }
+    </script>
+
+</body>
+</html>
