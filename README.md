@@ -14,4 +14,6 @@ tu evento y éste la genera.
 ![image](https://github.com/KenyaMercado/Proyecto1_ProgInter/assets/142718861/08f002f9-48b2-4c71-a9a3-365ac9016ea6)
 ![image](https://github.com/KenyaMercado/Proyecto1_ProgInter/assets/142718861/088f47d2-3b46-4102-93d0-f5bb03594bd2)
 ![image](https://github.com/KenyaMercado/Proyecto1_ProgInter/assets/142718861/5458dc30-ee98-46d7-b666-3b703bb5d913)
+![image](https://github.com/KenyaMercado/Proyecto1_ProgInter/assets/142718861/3a0719c5-9552-4a3b-8fff-cfcebb320b26)
+
 
