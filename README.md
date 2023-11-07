@@ -5,7 +5,7 @@ su galería y una breve descripción. Si desean cotizar para una fecha, pueden c
 y automáticamente manda los datos al correo del lugar. También cuenta con un generador de imágenes que permite ingresar algunas caracteristicas para alguna idea de 
 tu evento y éste la genera.
 
-Costo de la aplicación web: 3000
+Costo de la aplicación web: 5000
 
 ![image](https://github.com/KenyaMercado/Proyecto1_ProgInter/assets/142718861/bbe33427-a7c7-4310-a33e-ef57162c1d3d)
 ![image](https://github.com/KenyaMercado/Proyecto1_ProgInter/assets/142718861/b01747b6-5355-48d9-b7cd-fafb0da25d21)
